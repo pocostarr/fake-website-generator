@@ -8,7 +8,7 @@ Generate the HTML as follows:
 
 ```clojure
 (use 'fake.core)
-(generate 10 "/tmp/html-base-dir")
+(generate 10 "/tmp/html-base-dir" (fn [] "<p>do something fun to create body content here</p>"))
 ```
 
 Copy the files into your webservers' htdoc base directory.

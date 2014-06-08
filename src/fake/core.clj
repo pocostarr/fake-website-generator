@@ -49,10 +49,10 @@
 
 (defn generate
   "Create N interlinked HTML pages in directory file-base, plus an index.html with a single link to the first of the interlinked set"
-  [^Integer n ^String file-base]
+  [^Integer n ^String file-base body-fn]
   (let [paths (create-paths n)
         anchors (anchors-for-paths paths)
-        body (ul-from anchors)
+        body (str (body-fn) (ul-from anchors))
         html (str header body footer)]
     (doall (for [p paths] (create-page (str file-base "/" p) html)))
     (create-page (str file-base "/index.html") (str header (first anchors) footer))))
